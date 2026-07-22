@@ -1,0 +1,160 @@
+{
+  "difficulties": [
+    {
+      "name": "초급",
+      "minLevel": 51,
+      "maxLevel": 80,
+      "events": [
+        {
+          "id": "beginner-1",
+          "name": "초급-1차",
+          "imagePath": "/images/events/beginner-1.png",
+          "requiredLevel": { "min": 51, "max": 80 },
+          "expReward": 50000
+        },
+        {
+          "id": "beginner-2",
+          "name": "초급-2차",
+          "imagePath": "/images/events/beginner-2.png",
+          "requiredLevel": { "min": 51, "max": 80 },
+          "expReward": 100000
+        },
+        {
+          "id": "beginner-3",
+          "name": "초급-3차",
+          "imagePath": "/images/events/beginner-3.png",
+          "requiredLevel": { "min": 51, "max": 80 },
+          "expReward": 200000
+        }
+      ]
+    },
+    {
+      "name": "중급",
+      "minLevel": 81,
+      "maxLevel": 110,
+      "events": [
+        {
+          "id": "intermediate-1",
+          "name": "중급-1차",
+          "imagePath": "/images/events/intermediate-1.png",
+          "requiredLevel": { "min": 81, "max": 110 },
+          "expReward": 500000
+        },
+        {
+          "id": "intermediate-2",
+          "name": "중급-2차",
+          "imagePath": "/images/events/intermediate-2.png",
+          "requiredLevel": { "min": 81, "max": 110 },
+          "expReward": 1000000
+        },
+        {
+          "id": "intermediate-3",
+          "name": "중급-3차",
+          "imagePath": "/images/events/intermediate-3.png",
+          "requiredLevel": { "min": 81, "max": 110 },
+          "expReward": 2000000
+        }
+      ]
+    },
+    {
+      "name": "고급",
+      "minLevel": 111,
+      "maxLevel": 120,
+      "events": [
+        {
+          "id": "advanced-1",
+          "name": "고급-1차",
+          "imagePath": "/images/events/advanced-1.png",
+          "requiredLevel": { "min": 111, "max": 120 },
+          "expReward": 5000000
+        },
+        {
+          "id": "advanced-2",
+          "name": "고급-2차",
+          "imagePath": "/images/events/advanced-2.png",
+          "requiredLevel": { "min": 111, "max": 120 },
+          "expReward": 10000000
+        },
+        {
+          "id": "advanced-3",
+          "name": "고급-3차",
+          "imagePath": "/images/events/advanced-3.png",
+          "requiredLevel": { "min": 111, "max": 120 },
+          "expReward": 20000000
+        }
+      ]
+    }
+  ],
+  "levelExpTable": {
+    "51": 1000000,
+    "52": 1100000,
+    "53": 1210000,
+    "54": 1331000,
+    "55": 1464100,
+    "56": 1610510,
+    "57": 1771561,
+    "58": 1948717,
+    "59": 2143589,
+    "60": 2357948,
+    "61": 2593742,
+    "62": 2853116,
+    "63": 3138427,
+    "64": 3452269,
+    "65": 3797496,
+    "66": 4177245,
+    "67": 4594969,
+    "68": 5054466,
+    "69": 5559912,
+    "70": 6115904,
+    "71": 6727494,
+    "72": 7400243,
+    "73": 8140268,
+    "74": 8954294,
+    "75": 9849723,
+    "76": 10834695,
+    "77": 11918164,
+    "78": 13109980,
+    "79": 14420978,
+    "80": 15863075,
+    "81": 17449383,
+    "82": 19194321,
+    "83": 21113753,
+    "84": 23225128,
+    "85": 25547641,
+    "86": 28102405,
+    "87": 30912646,
+    "88": 34003910,
+    "89": 37404301,
+    "90": 41144731,
+    "91": 45259204,
+    "92": 49785125,
+    "93": 54763637,
+    "94": 60239900,
+    "95": 66263890,
+    "96": 72890279,
+    "97": 80179307,
+    "98": 88197237,
+    "99": 97016960,
+    "100": 106718656,
+    "101": 117390521,
+    "102": 129129573,
+    "103": 142042530,
+    "104": 156246783,
+    "105": 171871461,
+    "106": 189058607,
+    "107": 207964467,
+    "108": 228760914,
+    "109": 251637005,
+    "110": 276800705,
+    "111": 304480776,
+    "112": 334928853,
+    "113": 368421738,
+    "114": 405263911,
+    "115": 445790302,
+    "116": 490369332,
+    "117": 539406265,
+    "118": 593346891,
+    "119": 652681580,
+    "120": 717949738
+  }
+}
