@@ -67,7 +67,7 @@ export function DifficultyEventInput({ eventsData: providedEventsData }: Difficu
                       <label style={{ fontSize: '0.75rem', fontWeight: 600, color: '#4b5563', display: 'block', marginBottom: '0.5rem' }}>
                         진행 횟수
                       </label>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexWrap: 'wrap' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                         {/* - 버튼 */}
                         <button
                           onClick={() => {
@@ -126,6 +126,7 @@ export function DifficultyEventInput({ eventsData: providedEventsData }: Difficu
                             textAlign: 'center',
                             outline: 'none',
                             boxSizing: 'border-box',
+                            minWidth: '0',
                           }}
                           onFocus={(e) => (e.currentTarget.style.borderColor = colors.bg)}
                           onBlur={(e) => (e.currentTarget.style.borderColor = colors.bg + '66')}
