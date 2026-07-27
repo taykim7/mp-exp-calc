@@ -50,11 +50,13 @@ export function DifficultyEventInput({ eventsData: providedEventsData }: Difficu
                 {difficulty.events.map((event) => (
                   <div key={event.id} style={{ background: colors.bgLight, padding: '1rem', borderRadius: '0.5rem', border: `1px solid ${colors.bg}33` }}>
                     <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                      <div style={{ width: '3rem', height: '3rem', background: '#f3f4f6', borderRadius: '0.375rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', color: '#6b7280', fontWeight: 600 }}>
-                        IMG
-                      </div>
+                      {/* <img
+                        src="/images/thums/test.png"
+                        alt={event.name}
+                        style={{ width: '3rem', height: '3rem', borderRadius: '0.375rem', objectFit: 'cover', flexShrink: 0 }}
+                      /> */}
                       <div style={{ flex: 1 }}>
-                        <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1f2937' }}>{event.name}</p>
+                        <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1f2937' }}>{event.name} ({event.requiredLevel.min}~{event.requiredLevel.max})</p>
                         <p style={{ fontSize: '0.75rem', fontWeight: 700, color: '#059669', marginTop: '0.25rem' }}>
                           {event.expReward.toLocaleString()} EXP
                         </p>
@@ -79,8 +81,8 @@ export function DifficultyEventInput({ eventsData: providedEventsData }: Difficu
                             minHeight: '2rem',
                             borderRadius: '50%',
                             border: `2px solid ${colors.bg}`,
-                            background: colors.bg,
-                            color: 'white',
+                            background: 'white',
+                            color: colors.bg,
                             fontSize: '1.5rem',
                             fontWeight: 700,
                             cursor: 'pointer',
@@ -93,10 +95,10 @@ export function DifficultyEventInput({ eventsData: providedEventsData }: Difficu
                             lineHeight: '1',
                           }}
                           onMouseOver={(e) => {
-                            e.currentTarget.style.opacity = '0.9'
+                            e.currentTarget.style.background = colors.bgLight
                           }}
                           onMouseOut={(e) => {
-                            e.currentTarget.style.opacity = '1'
+                            e.currentTarget.style.background = 'white'
                           }}
                         >
                           −
