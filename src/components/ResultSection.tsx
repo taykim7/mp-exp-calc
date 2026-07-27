@@ -1,9 +1,14 @@
 'use client'
 
 import { useCalculatorStore } from '@/store/calculatorStore'
+import { eventsData } from '@/data/events'
 
 export function ResultSection() {
   const { currentLevel, finalLevel, finalExp, totalRuns, estimatedDays } = useCalculatorStore()
+
+  // 최종 레벨의 필요 경험치
+  const requiredExpForFinalLevel = eventsData.levelExpTable[finalLevel as keyof typeof eventsData.levelExpTable] || 0
+  const finalExpPercentage = requiredExpForFinalLevel > 0 ? (finalExp / requiredExpForFinalLevel * 100).toFixed(2) : 0
 
   // 버닝 종료 날짜 계산
   const burningEndDate = new Date(2026, 8, 11)
@@ -18,7 +23,7 @@ export function ResultSection() {
 
   const stats = [
     { icon: '⭐', label: '레벨', value: finalLevel, unit: '레벨', color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
-    { icon: '✨', label: '경험치', value: finalExp.toLocaleString(), unit: 'EXP', color: '#059669', bgColor: '#ecfdf5', borderColor: '#86efac' },
+    { icon: '✨', label: '경험치', value: finalExp.toLocaleString(), unit: `EXP (${finalExpPercentage}%)`, color: '#059669', bgColor: '#ecfdf5', borderColor: '#86efac' },
     { icon: '🎮', label: '총 진행 횟수', value: totalRuns, unit: '회', color: '#9333ea', bgColor: '#faf5ff', borderColor: '#e9d5ff' },
     { icon: '📅', label: '소요 예정 일자', value: estimatedDays, unit: '일', color: '#ea580c', bgColor: '#fef3c7', borderColor: '#fcd34d' },
   ]

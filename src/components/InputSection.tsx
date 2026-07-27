@@ -1,9 +1,14 @@
 'use client'
 
 import { useCalculatorStore } from '@/store/calculatorStore'
+import { eventsData } from '@/data/events'
 
 export function InputSection() {
   const { currentLevel, currentExp, setCurrentLevel, setCurrentExp } = useCalculatorStore()
+
+  // 현재 레벨의 필요 경험치
+  const requiredExpForCurrentLevel = eventsData.levelExpTable[currentLevel as keyof typeof eventsData.levelExpTable] || 0
+  const currentExpPercentage = requiredExpForCurrentLevel > 0 ? (currentExp / requiredExpForCurrentLevel * 100).toFixed(2) : 0
 
   return (
     <section style={{ padding: '1.5rem 2rem', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
@@ -85,10 +90,14 @@ export function InputSection() {
               e.currentTarget.style.borderColor = '#d1d5db'
             }}
           />
-          <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '0.75rem', color: '#6b7280' }}>
-            <span style={{ fontWeight: 600, color: '#7c3aed' }}>{currentExp.toLocaleString()}</span>
-            <span>&nbsp;EXP</span>
-            {/* TODO 퍼센테이지 표기하기 */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: '#6b7280' }}>
+            <div>
+              <span style={{ fontWeight: 600, color: '#7c3aed' }}>{currentExp.toLocaleString()}</span>
+              <span>&nbsp;/&nbsp;</span>
+              <span>{requiredExpForCurrentLevel.toLocaleString()}</span>
+              <span>&nbsp;EXP</span>
+            </div>
+            <span style={{ fontWeight: 600, color: '#7c3aed' }}>{currentExpPercentage}%</span>
           </div>
         </div>
       </div>
