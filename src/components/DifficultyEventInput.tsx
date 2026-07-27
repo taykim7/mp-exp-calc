@@ -65,12 +65,52 @@ export function DifficultyEventInput({ eventsData: providedEventsData }: Difficu
                       <label style={{ fontSize: '0.75rem', fontWeight: 600, color: '#4b5563', display: 'block', marginBottom: '0.5rem' }}>
                         진행 횟수
                       </label>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexWrap: 'wrap' }}>
+                        {/* - 버튼 */}
+                        <button
+                          onClick={() => {
+                            const current = eventCounts[event.id] || 0
+                            setEventCount(finalLevel, event.id, Math.max(0, current - 1))
+                          }}
+                          style={{
+                            width: '2rem',
+                            height: '2rem',
+                            minWidth: '2rem',
+                            minHeight: '2rem',
+                            borderRadius: '50%',
+                            border: `2px solid ${colors.bg}`,
+                            background: colors.bg,
+                            color: 'white',
+                            fontSize: '1.5rem',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s',
+                            padding: '0',
+                            flex: '0 0 auto',
+                            lineHeight: '1',
+                          }}
+                          onMouseOver={(e) => {
+                            e.currentTarget.style.opacity = '0.9'
+                          }}
+                          onMouseOut={(e) => {
+                            e.currentTarget.style.opacity = '1'
+                          }}
+                        >
+                          −
+                        </button>
+
+                        {/* 숫자 입력 */}
                         <input
-                          type="number"
-                          min={0}
-                          value={eventCounts[event.id] || 0}
-                          onChange={(e) => setEventCount(finalLevel, event.id, Number(e.target.value))}
+                          type="text"
+                          inputMode="numeric"
+                          value={eventCounts[event.id] === 0 ? '' : (eventCounts[event.id] || '')}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/[^0-9]/g, '')
+                            setEventCount(finalLevel, event.id, value === '' ? 0 : Math.max(0, Number(value)))
+                          }}
                           placeholder="0"
                           style={{
                             flex: 1,
@@ -88,7 +128,44 @@ export function DifficultyEventInput({ eventsData: providedEventsData }: Difficu
                           onFocus={(e) => (e.currentTarget.style.borderColor = colors.bg)}
                           onBlur={(e) => (e.currentTarget.style.borderColor = colors.bg + '66')}
                         />
-                        <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6b7280' }}>회</span>
+
+                        {/* + 버튼 */}
+                        <button
+                          onClick={() => {
+                            const current = eventCounts[event.id] || 0
+                            setEventCount(finalLevel, event.id, current + 1)
+                          }}
+                          style={{
+                            width: '2rem',
+                            height: '2rem',
+                            minWidth: '2rem',
+                            minHeight: '2rem',
+                            borderRadius: '50%',
+                            border: `2px solid ${colors.bg}`,
+                            background: colors.bg,
+                            color: 'white',
+                            fontSize: '1.5rem',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s',
+                            padding: '0',
+                            flex: '0 0 auto',
+                            lineHeight: '1',
+                          }}
+                          onMouseOver={(e) => {
+                            e.currentTarget.style.opacity = '0.9'
+                          }}
+                          onMouseOut={(e) => {
+                            e.currentTarget.style.opacity = '1'
+                          }}
+                        >
+                          +
+                        </button>
+
+                        {/* <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6b7280' }}>회</span> */}
                       </div>
                     </div>
                   </div>

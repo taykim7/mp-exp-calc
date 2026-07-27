@@ -18,11 +18,13 @@ export function InputSection() {
             레벨
           </label>
           <input
-            type="number"
-            value={currentLevel}
-            onChange={(e) => setCurrentLevel(Number(e.target.value))}
-            min={50}
-            max={120}
+            type="text"
+            inputMode="numeric"
+            value={currentLevel === 0 ? '' : currentLevel}
+            onChange={(e) => {
+              const value = e.target.value.replace(/[^0-9]/g, '')
+              setCurrentLevel(value === '' ? 0 : Number(value))
+            }}
             style={{
               padding: '0.75rem 1rem',
               borderRadius: '0.5rem',
@@ -34,9 +36,9 @@ export function InputSection() {
               boxSizing: 'border-box',
             }}
             onFocus={(e) => (e.currentTarget.style.borderColor = '#3b82f6')}
-            onBlur={(e) => { 
+            onBlur={(e) => {
               const value = Number(e.target.value)
-              if (value < 50) {
+              if (!e.target.value || value < 50) {
                 setCurrentLevel(50)  // 최소값으로 보정
               } else if (value > 120) {
                 setCurrentLevel(120)  // 최대값으로 보정
@@ -55,11 +57,14 @@ export function InputSection() {
             경험치
           </label>
           <input
-            type="number"
-            value={currentExp}
-            onChange={(e) => setCurrentExp(Number(e.target.value))}
-            step="1"
-            min="0"
+            type="text"
+            inputMode="numeric"
+            value={currentExp || ''}
+            onChange={(e) => {
+              const value = e.target.value.replace(/[^0-9]/g, '')
+              setCurrentExp(value === '' ? 0 : Number(value))
+            }}
+            placeholder="0"
             style={{
               padding: '0.75rem 1rem',
               borderRadius: '0.5rem',
@@ -70,9 +75,15 @@ export function InputSection() {
               outline: 'none',
               boxSizing: 'border-box',
             }}
-            onFocus={(e) => (e.currentTarget.style.borderColor = '#9333ea')}
-            onBlur={(e) => (e.currentTarget.style.borderColor = '#d1d5db')} 
-            // TODO 해당 레벨대의 최대 경험치로
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = '#9333ea'
+              e.currentTarget.select()
+            }}
+            onBlur={(e) => {
+              const value = Number(e.target.value) || 0
+              setCurrentExp(Math.max(0, value))
+              e.currentTarget.style.borderColor = '#d1d5db'
+            }}
           />
           <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '0.75rem', color: '#6b7280' }}>
             <span style={{ fontWeight: 600, color: '#7c3aed' }}>{currentExp.toLocaleString()}</span>
