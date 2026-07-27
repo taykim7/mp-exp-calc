@@ -23,16 +23,16 @@ export default function Home() {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <span style={{ fontSize: '2rem' }}>🎮</span>
-              <h1 style={{ fontSize: '2rem', fontWeight: 700, background: 'linear-gradient(to right, #2563eb, #9333ea, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                메랜 몬스터파크 경험치 계산기
+              <h1 style={{ fontSize: 'clamp(1.25rem, 4vw, 2rem)', fontWeight: 700, background: 'linear-gradient(to right, #2563eb, #9333ea, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 1.2 }}>
+                메랜 몬스터파크<br />경험치 계산기
               </h1>
             </div>
 
             {/* ✅ D-DAY 표시 */}
             {estimatedDays > 0 && (
-              <div style={{ textAlign: 'center', background: 'linear-gradient(to right, #ef4444, #dc2626)', color: 'white', padding: '0.5rem 1rem', borderRadius: '0.5rem' }}>
-                <p style={{ fontSize: '0.75rem', opacity: 0.9 }}>버닝 종료</p>
-                <p style={{ fontSize: '1.5rem', fontWeight: 700 }}>D-{estimatedDays}</p>
+              <div style={{ textAlign: 'center', background: 'linear-gradient(to right, #ef4444, #dc2626)', color: 'white', padding: '0.5rem 0.75rem', borderRadius: '0.5rem', flexShrink: 0 }}>
+                <p style={{ fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)', opacity: 0.9, margin: 0, whiteSpace: 'nowrap' }}>버닝 종료</p>
+                <p style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.5rem)', fontWeight: 700, margin: 0, whiteSpace: 'nowrap' }}>D-{estimatedDays}</p>
               </div>
             )}
           </div>
