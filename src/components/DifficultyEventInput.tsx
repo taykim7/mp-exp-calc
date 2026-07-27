@@ -1,80 +1,103 @@
 'use client'
 
-import { useState } from 'react'
-import type { EventsData } from '@/lib/types'
+import { useCalculatorStore } from '@/store/calculatorStore'
+import { eventsData } from '@/data/events'
 
-// 임시 이벤트 데이터 (나중에 events.json으로 대체)
-const defaultEventsData: EventsData = {
-  difficulties: [
-    {
-      name: '초급',
-      minLevel: 51,
-      maxLevel: 80,
-      events: [],
-    },
-    {
-      name: '중급',
-      minLevel: 81,
-      maxLevel: 100,
-      events: [],
-    },
-    {
-      name: '고급',
-      minLevel: 101,
-      maxLevel: 120,
-      events: [],
-    },
-  ],
-  levelExpTable: {},
+const difficultyColors = {
+  초급: { bg: '#10b981', bgLight: '#ecfdf5' },
+  중급: { bg: '#3b82f6', bgLight: '#eff6ff' },
+  고급: { bg: '#ef4444', bgLight: '#fef2f2' },
 }
 
 interface DifficultyEventInputProps {
-  eventsData?: EventsData
+  eventsData?: typeof eventsData
 }
 
-export function DifficultyEventInput({ eventsData = defaultEventsData }: DifficultyEventInputProps) {
-  const [eventCounts, setEventCounts] = useState<Record<string, number>>({})
-
-  const handleEventChange = (eventId: string, count: number) => {
-    setEventCounts((prev) => ({ ...prev, [eventId]: count }))
-  }
+export function DifficultyEventInput({ eventsData: providedEventsData }: DifficultyEventInputProps) {
+  const { finalLevel, eventCounts, setEventCount } = useCalculatorStore()
+  const data = providedEventsData || eventsData
 
   return (
-    <section className="space-y-6 p-4">
-      <h2 className="text-xl font-bold">🎯 난이도별 진행 횟수</h2>
+    <section style={{ padding: '1.5rem 2rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
+        <span style={{ fontSize: '1.5rem' }}>🎯</span>
+        <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1f2937' }}>난이도별 진행 횟수</h2>
+      </div>
 
-      {eventsData.difficulties.map((difficulty) => (
-        <div key={difficulty.name} className="space-y-3 rounded border p-4">
-          <h3 className="font-semibold">{difficulty.name}</h3>
-
-          {difficulty.events.length === 0 ? (
-            <p className="text-sm text-gray-500">이벤트 데이터를 불러오는 중입니다...</p>
-          ) : (
-            difficulty.events.map((event) => (
-              <div key={event.id} className="space-y-2">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-16 w-16 items-center justify-center rounded bg-gray-200">
-                    <span className="text-xs text-gray-500">이미지</span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">{event.name}</p>
-                    <p className="text-xs text-gray-500">{event.expReward.toLocaleString()} EXP</p>
-                  </div>
-                </div>
-
-                <input
-                  type="number"
-                  min={0}
-                  value={eventCounts[event.id] || 0}
-                  onChange={(e) => handleEventChange(event.id, Number(e.target.value))}
-                  placeholder="횟수"
-                  className="w-full rounded border p-2 text-sm"
-                />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+        {data.difficulties.map((difficulty) => {
+          const colors = difficultyColors[difficulty.name as keyof typeof difficultyColors]
+          return (
+            
+            <div
+              key={difficulty.name}
+              style={{
+                borderRadius: '0.75rem',
+                overflow: 'hidden',
+                border: '1px solid #e5e7eb',
+                background: 'white',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.07)',
+              }}
+            >
+              {/* 헤더 */}
+              <div style={{ background: colors.bg, padding: '1rem', color: 'white' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 700 }}>{difficulty.name}</h3>
+                <p style={{ fontSize: '0.875rem', opacity: 0.9 }}>Lv. {difficulty.minLevel}~{difficulty.maxLevel}</p>
               </div>
-            ))
-          )}
-        </div>
-      ))}
+
+              {/* 이벤트 목록 */}
+              <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {difficulty.events.map((event) => (
+                  <div key={event.id} style={{ background: colors.bgLight, padding: '1rem', borderRadius: '0.5rem', border: `1px solid ${colors.bg}33` }}>
+                    <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                      <div style={{ width: '3rem', height: '3rem', background: '#f3f4f6', borderRadius: '0.375rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', color: '#6b7280', fontWeight: 600 }}>
+                        IMG
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1f2937' }}>{event.name}</p>
+                        <p style={{ fontSize: '0.75rem', fontWeight: 700, color: '#059669', marginTop: '0.25rem' }}>
+                          {event.expReward.toLocaleString()} EXP
+                        </p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label style={{ fontSize: '0.75rem', fontWeight: 600, color: '#4b5563', display: 'block', marginBottom: '0.5rem' }}>
+                        진행 횟수
+                      </label>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <input
+                          type="number"
+                          min={0}
+                          value={eventCounts[event.id] || 0}
+                          onChange={(e) => setEventCount(finalLevel, event.id, Number(e.target.value))}
+                          placeholder="0"
+                          style={{
+                            flex: 1,
+                            padding: '0.5rem',
+                            borderRadius: '0.375rem',
+                            border: `1px solid ${colors.bg}66`,
+                            background: 'white',
+                            color: '#1f2937',
+                            fontSize: '0.875rem',
+                            fontWeight: 600,
+                            textAlign: 'center',
+                            outline: 'none',
+                            boxSizing: 'border-box',
+                          }}
+                          onFocus={(e) => (e.currentTarget.style.borderColor = colors.bg)}
+                          onBlur={(e) => (e.currentTarget.style.borderColor = colors.bg + '66')}
+                        />
+                        <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#6b7280' }}>회</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </section>
   )
 }

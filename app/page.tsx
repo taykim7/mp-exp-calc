@@ -5,38 +5,64 @@ import { DifficultyEventInput } from '@/components/DifficultyEventInput'
 import { ResultSection } from '@/components/ResultSection'
 import { ProgressStageList } from '@/components/ProgressStageList'
 import { FloatingResetButton } from '@/components/FloatingResetButton'
-import eventsData from '@/../../public/data/events.json'
 
 export default function Home() {
+  const estimatedDays = 99;
   return (
-    <main className="min-h-screen bg-white">
+    <main style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #f0f9ff, #fce7f3)' }}>
       {/* 헤더 */}
-      <header className="sticky top-0 z-20 border-b bg-white shadow-sm">
-        <div className="mx-auto max-w-2xl px-4 py-4">
-          <h1 className="text-2xl font-bold">🎮 몬스터파크 경험치 계산기</h1>
-          <p className="text-sm text-gray-600">
-            이벤트 진행으로 얻는 최종 레벨과 경험치를 계산해보세요!
+            <header style={{ position: 'sticky', top: 0, zIndex: 20, borderBottom: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(12px)' }}>
+        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '1.5rem 1rem' }}>
+
+          {/* 첫 번째 행: 제목 + D-DAY */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <span style={{ fontSize: '2rem' }}>🎮</span>
+              <h1 style={{ fontSize: '2rem', fontWeight: 700, background: 'linear-gradient(to right, #2563eb, #9333ea, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                몬스터파크 경험치 계산기
+              </h1>
+            </div>
+
+            {/* ✅ D-DAY 표시 */}
+            {estimatedDays > 0 && (
+              <div style={{ textAlign: 'center', background: 'linear-gradient(to right, #2563eb, #9333ea)', color: 'white', padding: '0.5rem 1rem', borderRadius: '0.5rem' }}>
+                <p style={{ fontSize: '0.75rem', opacity: 0.9 }}>버닝 종료</p>
+                <p style={{ fontSize: '1.5rem', fontWeight: 700 }}>D-{estimatedDays}</p>
+              </div>
+            )}
+          </div>
+
+          {/* 두 번째 행: 설명 */}
+          <p style={{ fontSize: '0.875rem', color: '#4b5563' }}>
+            이벤트 진행으로 얻는 최종 레벨과 경험치를 빠르게 계산해보세요
           </p>
         </div>
       </header>
 
-      {/* 컨텐츠 */}
-      <div className="mx-auto max-w-2xl">
-        {/* 입력 섹션 */}
-        <InputSection />
+      {/* 메인 컨텐츠 */}
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '2rem 1rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        {/* 입력 카드 */}
+        <div style={{ borderRadius: '1rem', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
+          <InputSection />
+          <DifficultyEventInput />
+        </div>
 
-        {/* 이벤트 선택 */}
-        <DifficultyEventInput eventsData={eventsData} />
+        {/* 결과 카드 */}
+        <div style={{ borderRadius: '1rem', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
+          <ResultSection />
+        </div>
 
-        {/* 결과 표시 */}
-        <ResultSection />
-
-        {/* 진행 단계 */}
-        <ProgressStageList />
+        {/* 진행 단계 카드 */}
+        <div style={{ borderRadius: '1rem', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
+          <ProgressStageList />
+        </div>
       </div>
 
       {/* 플로팅 버튼 */}
       <FloatingResetButton />
+
+      {/* 하단 여백 */}
+      <div style={{ height: '6rem' }} />
     </main>
   )
 }

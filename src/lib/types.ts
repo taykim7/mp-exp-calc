@@ -1,9 +1,14 @@
-// 이벤트 타입 (events.json과 매핑)
-export interface Event {
+// 이벤트 타입 정의
+export interface EventLevel {
+  min: number
+  max: number
+}
+
+export interface GameEvent {
   id: string
   name: string
   imagePath: string
-  requiredLevel: { min: number; max: number }
+  requiredLevel: EventLevel
   expReward: number
 }
 
@@ -11,16 +16,24 @@ export interface Difficulty {
   name: string
   minLevel: number
   maxLevel: number
-  events: Event[]
+  events: GameEvent[]
 }
 
 export interface EventsData {
   difficulties: Difficulty[]
-  levelExpTable: Record<string, number>
+  levelExpTable: Record<number, number>
 }
 
-// UI 관련 타입
-export interface CalculatorResult {
+// 진행 단계
+export interface ProgressStage {
+  day: number
+  eventId: string
+  eventName: string
+  runs: number
+}
+
+// 계산 결과
+export interface CalculationResult {
   finalLevel: number
   finalExp: number
   totalRuns: number
@@ -28,12 +41,21 @@ export interface CalculatorResult {
   progressStages: ProgressStage[]
 }
 
-export interface ProgressStage {
-  day: number
-  eventId: string
-  eventName: string
-  runs: number
-  totalExp?: number
-  resultLevel?: number
-  resultExp?: number
+// 계산기 상태
+export interface CalculatorState {
+  currentLevel: number
+  currentExp: number
+  eventCounts: Record<string, number>
+  finalLevel: number
+  finalExp: number
+  totalRuns: number
+  estimatedDays: number
+  progressStages: ProgressStage[]
+
+  setCurrentLevel: (level: number) => void
+  setCurrentExp: (exp: number) => void
+  setEventCount: (finalLevel: number, requiredLevel: string, count: number) => void
+  calculate: () => void
+  reset: () => void
+  setCalculationResult: (result: CalculationResult) => void
 }
