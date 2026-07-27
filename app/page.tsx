@@ -7,7 +7,12 @@ import { ProgressStageList } from '@/components/ProgressStageList'
 import { FloatingResetButton } from '@/components/FloatingResetButton'
 
 export default function Home() {
-  const estimatedDays = 99;
+  const burningEndDate = new Date(2026, 8, 11) // 9월 11일
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  burningEndDate.setHours(0, 0, 0, 0)
+  const estimatedDays = Math.ceil((burningEndDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+
   return (
     <main style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #f0f9ff, #fce7f3)' }}>
       {/* 헤더 */}
@@ -25,7 +30,7 @@ export default function Home() {
 
             {/* ✅ D-DAY 표시 */}
             {estimatedDays > 0 && (
-              <div style={{ textAlign: 'center', background: 'linear-gradient(to right, #2563eb, #9333ea)', color: 'white', padding: '0.5rem 1rem', borderRadius: '0.5rem' }}>
+              <div style={{ textAlign: 'center', background: 'linear-gradient(to right, #ef4444, #dc2626)', color: 'white', padding: '0.5rem 1rem', borderRadius: '0.5rem' }}>
                 <p style={{ fontSize: '0.75rem', opacity: 0.9 }}>버닝 종료</p>
                 <p style={{ fontSize: '1.5rem', fontWeight: 700 }}>D-{estimatedDays}</p>
               </div>
