@@ -24,7 +24,7 @@ export default function Home() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <span style={{ fontSize: '2rem' }}>🎮</span>
               <h1 style={{ fontSize: '2rem', fontWeight: 700, background: 'linear-gradient(to right, #2563eb, #9333ea, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                몬스터파크 경험치 계산기
+                메랜 몬스터파크 경험치 계산기
               </h1>
             </div>
 
@@ -39,7 +39,7 @@ export default function Home() {
 
           {/* 두 번째 행: 설명 */}
           <p style={{ fontSize: '0.875rem', color: '#4b5563' }}>
-            이벤트 진행으로 얻는 최종 레벨과 경험치를 빠르게 계산해보세요
+            몬스터파크 이벤트 진행으로 얻는 최종 레벨과 경험치를 빠르게 계산해보세요
           </p>
         </div>
       </header>
