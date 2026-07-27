@@ -20,9 +20,6 @@ function calculateFinalLevel(
 
   // 각 레벨별로 경험치 확인
   while (50 <= level && level < 120) {
-    console.log('현재 레벨 : ' + level)
-    console.log('현재 경험치 : ' + exp)
-    
     // 현재 필요 경험치
     const requiredExp = getExpRequiredForLevel(level, levelExpTable)
 
