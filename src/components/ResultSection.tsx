@@ -3,7 +3,18 @@
 import { useCalculatorStore } from '@/store/calculatorStore'
 
 export function ResultSection() {
-  const { finalLevel, finalExp, totalRuns, estimatedDays } = useCalculatorStore()
+  const { currentLevel, finalLevel, finalExp, totalRuns, estimatedDays } = useCalculatorStore()
+
+  // 버닝 종료 날짜 계산
+  const burningEndDate = new Date(2026, 8, 11)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  burningEndDate.setHours(0, 0, 0, 0)
+  const daysUntilBurningEnd = Math.ceil((burningEndDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+
+  // 주의사항 확인
+  const hasLevelLimitWarning = (currentLevel <= 82 && finalLevel >= 71) || (finalLevel <= 82 && currentLevel >= 71)
+  const exceedsBurningDeadline = estimatedDays > daysUntilBurningEnd
 
   const stats = [
     { icon: '⭐', label: '레벨', value: finalLevel, unit: '레벨', color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
@@ -44,6 +55,28 @@ export function ResultSection() {
           </div>
         ))}
       </div>
+
+      {/* 주의사항 영역 */}
+      {(hasLevelLimitWarning || exceedsBurningDeadline) && (
+        <div style={{ marginTop: '2rem', padding: '1.25rem', borderRadius: '0.75rem', background: '#fff5f5', border: '2px solid #fca5a5' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+            <span style={{ fontSize: '1.25rem' }}>⚠️</span>
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#dc2626' }}>주의사항</h3>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {hasLevelLimitWarning && (
+              <p style={{ fontSize: '0.875rem', color: '#991b1b', fontWeight: 600 }}>
+                • 71~83레벨 구간에서는 2레벨 이상 동시 레벨업에 주의하세요. 한 번에 2레벨 이상 오를 만큼의 경험치를 획득하면, 일부 경험치가 정상적으로 반영되지 않을 수 있습니다.
+              </p>
+            )}
+            {exceedsBurningDeadline && (
+              <p style={{ fontSize: '0.875rem', color: '#991b1b', fontWeight: 600 }}>
+                • 버닝서버 종료일(2026년 9월 11일) 이전까지 진행해야 합니다.
+              </p>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   )
 }
