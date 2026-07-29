@@ -86,7 +86,9 @@ export function InputSection() {
             }}
             onBlur={(e) => {
               const value = Number(e.target.value) || 0
-              setCurrentExp(Math.max(0, value))
+              const maxExp = requiredExpForCurrentLevel
+              const limitedExp = Math.max(0, Math.min(value, maxExp))
+              setCurrentExp(limitedExp)
               e.currentTarget.style.borderColor = '#d1d5db'
             }}
           />
