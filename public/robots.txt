@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api
+
+Sitemap: https://mapleland-monsterpark.vercel.app/sitemap.xml
+Host: https://mapleland-monsterpark.vercel.app

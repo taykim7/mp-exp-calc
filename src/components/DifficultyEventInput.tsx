@@ -51,7 +51,7 @@ export function DifficultyEventInput({ eventsData: providedEventsData }: Difficu
                   <div key={event.id} style={{ background: colors.bgLight, padding: '1rem', borderRadius: '0.5rem', border: `1px solid ${colors.bg}33` }}>
                     <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '0.75rem' }}>
                       {/* <img
-                        src="/images/thums/test.png"
+                        src="/images/thums/thum.png"
                         alt={event.name}
                         style={{ width: '3rem', height: '3rem', borderRadius: '0.375rem', objectFit: 'cover', flexShrink: 0 }}
                       /> */}
