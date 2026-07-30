@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Script from "next/script"
+import { Footer } from "@/components/Footer"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -74,7 +75,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <div className="flex-1">{children}</div>
+        <Footer />
+        {/* 배포 정보 콘솔 로그 */}
+        <Script id="deployment-info" strategy="afterInteractive">
+          {`
+            console.log('%c🎮 메랜 경험치 계산기 v0.1.0', 'color: #2563eb; font-size: 14px; font-weight: bold;');
+          `}
+        </Script>
+      </body>
     </html>
   )
 }
