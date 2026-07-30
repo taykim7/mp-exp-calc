@@ -1,6 +1,6 @@
 export function Footer() {
   const commitSha = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) || 'local'
-  const deploymentId = process.env.VERCEL_DEPLOYMENT_ID || 'development'
+  // const deploymentId = process.env.VERCEL_DEPLOYMENT_ID || 'development'
   const buildDate = new Date().toISOString().split('T')[0]
 
   return (
