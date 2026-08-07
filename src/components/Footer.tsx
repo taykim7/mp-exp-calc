@@ -13,7 +13,7 @@ export function Footer() {
       background: 'rgba(255,255,255,0.5)',
     }}>
       <p style={{ margin: '0.5rem 0' }}>
-        v{APP_VERSION}
+        v{APP_VERSION} © 총알몬
       </p>
     </footer>
   )
