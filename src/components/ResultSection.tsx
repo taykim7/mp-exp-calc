@@ -26,12 +26,12 @@ export function ResultSection() {
   const exceedsBurningDeadline = estimatedDays > daysUntilBurningEnd
 
   const stats = [
-    { icon: '🌱', label: '시작 레벨', value: currentLevel, unit: '레벨', color: '#059669', bgColor: '#ecfdf5', borderColor: '#86efac' },
-    { icon: '🌱', label: '시작 경험치', value: currentExp.toLocaleString(), unit: `EXP (${currentExpPercentage}%)`,  color: '#059669', bgColor: '#ecfdf5', borderColor: '#86efac' },
-    { icon: '⭐', label: '최종 레벨', value: finalLevel, unit: '레벨', color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
-    { icon: '⭐', label: '최종 경험치', value: finalExp.toLocaleString(), unit: `EXP (${finalExpPercentage}%)`, color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
-    { icon: '🎮', label: '총 진행 횟수', value: totalRuns, unit: '회', color: '#9333ea', bgColor: '#faf5ff', borderColor: '#e9d5ff' },
-    { icon: '📅', label: '소요 예정 일자', value: estimatedDays, unit: '일', color: '#ea580c', bgColor: '#fef3c7', borderColor: '#fcd34d' },
+    { icon: '🌱', label: '시작 레벨', value: `${currentLevel}`, unit: `${currentExpPercentage}% (${currentExp.toLocaleString()})`, color: '#059669', bgColor: '#ecfdf5', borderColor: '#86efac' },
+    // { icon: '🌱', label: '시작 경험치', value: currentExp.toLocaleString(), unit: `EXP (${currentExpPercentage}%)`,  color: '#1f2937', borderColor: '#d1d5db' },
+    { icon: '⭐', label: '최종 레벨', value: `${finalLevel}`, unit: `${finalExpPercentage}% (${finalExp.toLocaleString()})`, color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
+    // { icon: '⭐', label: '최종 경험치', value: finalExp.toLocaleString(), unit: `EXP (${finalExpPercentage}%)`, color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
+    { icon: '🎮', label: '진행 횟수', value: totalRuns, unit: '회', color: '#9333ea', bgColor: '#faf5ff', borderColor: '#e9d5ff' },
+    { icon: '📅', label: '예정 일자', value: estimatedDays, unit: '일', color: '#ea580c', bgColor: '#fef3c7', borderColor: '#fcd34d' },
   ]
 
   return (
