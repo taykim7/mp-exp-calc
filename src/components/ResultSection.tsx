@@ -41,7 +41,7 @@ export function ResultSection() {
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1f2937' }}>계산 결과</h2>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '1rem' }}>
         {stats.map((stat, idx) => (
           <div
             key={idx}
