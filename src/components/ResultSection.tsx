@@ -4,9 +4,13 @@ import { useCalculatorStore } from '@/store/calculatorStore'
 import { eventsData } from '@/data/events'
 
 export function ResultSection() {
-  const { currentLevel, finalLevel, finalExp, totalRuns, estimatedDays } = useCalculatorStore()
+  const { currentLevel, currentExp, finalLevel, finalExp, totalRuns, estimatedDays } = useCalculatorStore()
 
-  // 최종 레벨의 필요 경험치
+  // 시작 레벨 경험치
+  const requiredExpForCurrentLevel = eventsData.levelExpTable[currentLevel as keyof typeof eventsData.levelExpTable] || 0
+  const currentExpPercentage = requiredExpForCurrentLevel > 0 ? (currentExp / requiredExpForCurrentLevel * 100).toFixed(2) : 0
+  
+  // 최종 레벨 경험치
   const requiredExpForFinalLevel = eventsData.levelExpTable[finalLevel as keyof typeof eventsData.levelExpTable] || 0
   const finalExpPercentage = requiredExpForFinalLevel > 0 ? (finalExp / requiredExpForFinalLevel * 100).toFixed(2) : 0
 
@@ -22,8 +26,10 @@ export function ResultSection() {
   const exceedsBurningDeadline = estimatedDays > daysUntilBurningEnd
 
   const stats = [
-    { icon: '⭐', label: '레벨', value: finalLevel, unit: '레벨', color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
-    { icon: '✨', label: '경험치', value: finalExp.toLocaleString(), unit: `EXP (${finalExpPercentage}%)`, color: '#059669', bgColor: '#ecfdf5', borderColor: '#86efac' },
+    { icon: '🌱', label: '시작 레벨', value: currentLevel, unit: '레벨', color: '#059669', bgColor: '#ecfdf5', borderColor: '#86efac' },
+    { icon: '🌱', label: '시작 경험치', value: currentExp.toLocaleString(), unit: `EXP (${currentExpPercentage}%)`,  color: '#059669', bgColor: '#ecfdf5', borderColor: '#86efac' },
+    { icon: '⭐', label: '최종 레벨', value: finalLevel, unit: '레벨', color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
+    { icon: '⭐', label: '최종 경험치', value: finalExp.toLocaleString(), unit: `EXP (${finalExpPercentage}%)`, color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
     { icon: '🎮', label: '총 진행 횟수', value: totalRuns, unit: '회', color: '#9333ea', bgColor: '#faf5ff', borderColor: '#e9d5ff' },
     { icon: '📅', label: '소요 예정 일자', value: estimatedDays, unit: '일', color: '#ea580c', bgColor: '#fef3c7', borderColor: '#fcd34d' },
   ]
