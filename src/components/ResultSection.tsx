@@ -26,12 +26,12 @@ export function ResultSection() {
   const exceedsBurningDeadline = estimatedDays > daysUntilBurningEnd
 
   const stats = [
-    { icon: '🌱', label: '시작 레벨', value: `${currentLevel}`, unit: `${currentExpPercentage}% (${currentExp.toLocaleString()})`, color: '#059669', bgColor: '#ecfdf5', borderColor: '#86efac' },
+    { label: '시작 레벨', value: `${currentLevel}`, unit: `${currentExpPercentage}% (${currentExp.toLocaleString()})`, color: 'rgb(55, 65, 81)', bgColor: 'rgb(249, 250, 251)', borderColor: 'rgb(229, 231, 235)' },
     // { icon: '🌱', label: '시작 경험치', value: currentExp.toLocaleString(), unit: `EXP (${currentExpPercentage}%)`,  color: '#1f2937', borderColor: '#d1d5db' },
-    { icon: '⭐', label: '최종 레벨', value: `${finalLevel}`, unit: `${finalExpPercentage}% (${finalExp.toLocaleString()})`, color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
+    { label: '최종 레벨', value: `${finalLevel}`, unit: `${finalExpPercentage}% (${finalExp.toLocaleString()})`, color: '#ea580c', bgColor: '#fef3c7', borderColor: '#fcd34d'},
     // { icon: '⭐', label: '최종 경험치', value: finalExp.toLocaleString(), unit: `EXP (${finalExpPercentage}%)`, color: '#3b82f6', bgColor: '#eff6ff', borderColor: '#93c5fd' },
-    { icon: '🎮', label: '진행 횟수', value: totalRuns, unit: '회', color: '#9333ea', bgColor: '#faf5ff', borderColor: '#e9d5ff' },
-    { icon: '📅', label: '예정 일자', value: estimatedDays, unit: '일', color: '#ea580c', bgColor: '#fef3c7', borderColor: '#fcd34d' },
+    { label: '진행 횟수', value: totalRuns, unit: '회', color: 'rgb(55, 65, 81)', bgColor: 'rgb(249, 250, 251)', borderColor: 'rgb(229, 231, 235)' },
+    { label: '예정 일자', value: estimatedDays, unit: '일', color: 'rgb(55, 65, 81)', bgColor: 'rgb(249, 250, 251)', borderColor: 'rgb(229, 231, 235)' },
   ]
 
   return (
@@ -57,7 +57,7 @@ export function ResultSection() {
               <p style={{ fontSize: '0.75rem', fontWeight: 700, color: stat.color, letterSpacing: '0.05em' }}>
                 {stat.label}
               </p>
-              <span style={{ fontSize: '1.5rem' }}>{stat.icon}</span>
+              {/* <span style={{ fontSize: '1.5rem' }}>{stat.icon}</span> */}
             </div>
             <p style={{ fontSize: '1.875rem', fontWeight: 700, color: stat.color, wordBreak: 'break-word' }}>
               {stat.value}

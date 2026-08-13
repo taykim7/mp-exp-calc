@@ -94,12 +94,12 @@ export function InputSection() {
           />
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: '#6b7280' }}>
             <div>
-              <span style={{ fontWeight: 600, color: '#7c3aed' }}>{currentExp.toLocaleString()}</span>
+              <span style={{ fontWeight: 600, color: '#2563eb' }}>{currentExp.toLocaleString()}</span>
               <span>&nbsp;/&nbsp;</span>
               <span>{requiredExpForCurrentLevel.toLocaleString()}</span>
               <span>&nbsp;EXP</span>
             </div>
-            <span style={{ fontWeight: 600, color: '#7c3aed' }}>{currentExpPercentage}%</span>
+            <span style={{ fontWeight: 600, color: '#2563eb' }}>{currentExpPercentage}%</span>
           </div>
         </div>
       </div>

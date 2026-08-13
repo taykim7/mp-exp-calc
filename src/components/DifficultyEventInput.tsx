@@ -6,9 +6,9 @@ import { useCalculatorStore } from '@/store/calculatorStore'
 import { eventsData } from '@/data/events'
 
 const difficultyColors: Record<string, { bg: string; bgLight: string }> = {
-  초급: { bg: '#10b981', bgLight: '#ecfdf5' },
-  중급: { bg: '#3b82f6', bgLight: '#eff6ff' },
-  고급: { bg: '#ef4444', bgLight: '#fef2f2' },
+  초급: { bg: 'rgb(16, 185, 129)', bgLight: '#ecfdf5' },
+  중급: { bg: 'rgb(59, 130, 246)', bgLight: '#eff6ff' },
+  고급: { bg: 'rgb(239, 68, 68)', bgLight: '#fef2f2' },
 }
 
 interface DifficultyEventInputProps {
@@ -167,13 +167,13 @@ export function DifficultyEventInput({ eventsData: providedEventsData }: Difficu
               }}
             >
               {/* 헤더 */}
-              <div style={{ background: colors.bg, padding: '1rem', color: 'white' }}>
+              <div style={{ background: colors.bg, padding: '1rem 1rem 0 1rem', color: 'white' }}>
                 <h3 style={{ fontSize: '1rem', fontWeight: 700 }}>{difficulty.name}</h3>
                 <p style={{ fontSize: '0.875rem', opacity: 0.9 }}>Lv. {difficulty.minLevel}~{difficulty.maxLevel}</p>
               </div>
 
               {/* 이벤트 목록 */}
-              <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ background: colors.bg, padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {/* 나머지 이벤트들 (접고 펼칠 수 있음) */}
                 {otherEvents.length > 0 && (
                   <div>

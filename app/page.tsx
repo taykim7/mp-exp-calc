@@ -14,7 +14,7 @@ export default function Home() {
   const estimatedDays = Math.ceil((burningEndDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
 
   return (
-    <main style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #f0f9ff, #fce7f3)' }}>
+    <main style={{ minHeight: '100vh', background: 'rgb(240, 249, 255)' }}>
       {/* 헤더 */}
             <header style={{ position: 'sticky', top: 0, zIndex: 20, borderBottom: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(12px)' }}>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '1.5rem 1rem' }}>
