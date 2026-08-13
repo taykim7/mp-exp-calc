@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import { Footer } from "@/components/Footer"
 import "./globals.css"
+import { APP_VERSION } from '@/config/version'
 
 export const metadata: Metadata = {
   title: "메이플랜드 몬스터파크 경험치 계산기",
@@ -81,7 +82,7 @@ export default function RootLayout({
         {/* 배포 정보 콘솔 로그 */}
         <Script id="deployment-info" strategy="afterInteractive">
           {`
-            console.log('%c🎮 메랜 경험치 계산기 v0.1.0', 'color: #2563eb; font-size: 14px; font-weight: bold;');
+            console.log('%c🎮 메랜 경험치 계산기 v${APP_VERSION}', 'color: #2563eb; font-size: 14px; font-weight: bold;');
           `}
         </Script>
       </body>
