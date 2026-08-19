@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     },
   },
   metadataBase: new URL("https://mapleland-monsterpark.vercel.app"),
+  verification: {
+    google: "1u6LoM7SI1e14j4ROumTy-Kg_Z5ro2ZQtFTshDCpe9s",
+  },
 }
 
 export default function RootLayout({
