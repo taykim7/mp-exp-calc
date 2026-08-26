@@ -82,7 +82,7 @@ export function ResultSection() {
             )}
             {exceedsBurningDeadline && (
               <p style={{ fontSize: '0.875rem', color: '#991b1b', fontWeight: 600 }}>
-                • 버닝서버 종료일(2026년 9월 11일) 이전까지 진행해야 합니다.
+                • 소요 예정 일자가 버닝서버 종료일(2026년 9월 11일)을 초과합니다.
               </p>
             )}
           </div>
