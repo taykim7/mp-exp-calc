@@ -29,12 +29,17 @@ export default function Home() {
             </div>
 
             {/* ✅ D-DAY 표시 */}
-            {estimatedDays > 0 && (
+            {/* {estimatedDays > 0 && (
               <div style={{ textAlign: 'center', background: 'linear-gradient(to right, #ef4444, #dc2626)', color: 'white', padding: '0.5rem 0.75rem', borderRadius: '0.5rem', flexShrink: 0 }}>
                 <p style={{ fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)', opacity: 0.9, margin: 0, whiteSpace: 'nowrap' }}>버닝 종료</p>
                 <p style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.5rem)', fontWeight: 700, margin: 0, whiteSpace: 'nowrap' }}>D-{estimatedDays}</p>
               </div>
-            )}
+            )} */}
+
+            <div style={{ textAlign: 'center', background: 'linear-gradient(to right, #ef4444, #dc2626)', color: 'white', padding: '0.5rem 0.75rem', borderRadius: '0.5rem', flexShrink: 0 }}>
+              <p style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1.5rem)', fontWeight: 700, margin: 0, whiteSpace: 'nowrap' }}>버닝 종료</p>
+              <p style={{ fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)', opacity: 0.9, margin: 0, whiteSpace: 'nowrap' }}>수고하셨습니다</p>
+            </div>
           </div>
 
           {/* 두 번째 행: 설명 */}
